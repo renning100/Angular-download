@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="custom" fill="outline">
+    <ion-title class="ion-text-center">
+      <h2><ion-icon name="person-add-sharp"></ion-icon>
+        User Authentication
+      <ion-icon name="person-add-sharp"></ion-icon></h2>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+<ion-grid fixed>
+  <ion-row>
+    <ion-col sizeLg="6" offsetLg="3">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <b>Login</b></ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-padding-vertical">
+          <ion-item fill="outline" class="ion-margin-top">
+            <ion-label position="floating">Server Name</ion-label>
+            <ion-input [(ngModel)]="serverName" type="text" required="true"></ion-input>
+          </ion-item>
+          <ion-item fill="outline" class="ion-margin-top">
+            <ion-label position="floating">User Name</ion-label>
+            <ion-input [(ngModel)]="userName" type="text" required="true"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-top" fill="outline">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input [(ngModel)]="serverPassword" type="text" required="true"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>               
+          <ion-button shape="round" size="large" color="custom" (click)="onSubmit()" expand="block">
+            SUBMIT
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+ </ion-content>
+
+ <footer id="footer" class="footer text-muted">
+  Copyright © 2010-2019 ForgeRock AS. All rights reserved.
+</footer>
+

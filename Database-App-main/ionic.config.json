@@ -1,0 +1,7 @@
+{
+  "name": "DatabaseSoftware",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

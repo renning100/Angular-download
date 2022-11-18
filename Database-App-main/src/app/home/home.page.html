@@ -1,0 +1,205 @@
+<body>
+  <ion-header [translucent]="true">
+    <ion-toolbar color="custom">
+      <ion-title class="ion-text-center">
+        <ion-icon name="earth-sharp"></ion-icon> 
+         WELCOME TO OUR SERVER 
+         <ion-icon name="earth-sharp"></ion-icon>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content class="ion-text-center" color="#f7f7f7" >
+    <br>
+      <ion-grid fixed >
+        <ion-row>
+          <ion-col sizeLg="6" offsetLg="3">
+            <ion-card>
+            
+            <ion-item fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label>Select Database</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-select (ionChange)="DatabaseSelectEvent($event)" multiple="false" placeholder="Select Database">
+                      <ion-select-option *ngFor="let db of databases" [value]="db.id">{{db.Database}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+
+            <ion-item *ngIf="!isTable" fill="outline">
+              <ion-label>Select View</ion-label>
+              <ion-select (ionChange)="viewSelectEvent($event)"  value="view" multiple="true" placeholder="Select Table">
+                <ion-select-option *ngFor="let t of views"  [value]="t"> {{t}} </ion-select-option>
+              </ion-select>
+            </ion-item>
+  
+              
+            <!--
+            <ion-item fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label>Select Table or View</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item fill="outline">            
+                    <ion-select (ionChange)="tableViewSelectEvent($event)" value="" multiple="false" placeholder="Select Table or View">
+                      <ion-select-option value="table">Table</ion-select-option>
+                      <ion-select-option value="view">View</ion-select-option>
+                    </ion-select>
+                 </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+  -->
+            <ion-item *ngIf="isTable" fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label>Select Tables Or Views</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item  fill="outline">
+                    <ion-select (ionChange)="tableSelectEvent($event)"  value="table" multiple="true" placeholder="Select Tables Or Views">
+                      <ion-select-option *ngFor="let t of tables"  [value]="t"> {{t}} </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+  
+            <ion-item *ngIf="!isTable" fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label>Select View</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item  fill="outline">
+                    <ion-select (ionChange)="viewSelectEvent($event)"  value="view" multiple="true" placeholder="Select View">
+                      <ion-select-option *ngFor="let t of views"  [value]="t"> {{t}} </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+  
+            <ion-item fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label>Select File Format</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-select (ionChange)="fileTypeEvent($event)" [value]="selectedFileType" multiple="false" placeholder="Select File Format">
+                      <ion-select-option value="csv">CSV</ion-select-option>
+                      <ion-select-option value="xls">Excel</ion-select-option>
+                      <ion-select-option value="tsv">TSV</ion-select-option>
+                      <ion-select-option value="json">JSON</ion-select-option>
+                      <ion-select-option value="txt">TEXT</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+           
+            <ion-item *ngIf="isSeparator" fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label>Select Field Separator</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item  fill="outline">
+                    <ion-select (ionChange)="seperatorTypeEvent($event)"  value="" multiple="false" placeholder="Select Separator">
+                      <ion-select-option value=",">,</ion-select-option>
+                      <ion-select-option value="|">|</ion-select-option>
+                      <ion-select-option value=":">:</ion-select-option>
+                      <ion-select-option value=";">;</ion-select-option>
+                      <ion-select-option value="-">-</ion-select-option>
+                      <ion-select-option value="  ">Tab</ion-select-option>
+                      <ion-select-option value="Others">Others</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+            
+            <ion-item *ngIf="isOthers" fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label> Enter the Field Separator</ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item fill="outline">              
+                    <ion-input (ionChange)="otherSeparatorEvent($event)" type="text" value="" placeholder="Enter the Field Separator"></ion-input>  
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+        
+            <ion-item fill="outline" ><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label> Select Qualifier </ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-input (ionChange)="qualifierEvent($event)" type="text" value="" placeholder="Enter Qualifier"></ion-input>  
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+  
+            <ion-item fill="outline"><ion-grid>
+              <ion-row>
+                <ion-col><h6><ion-label> Download Directory </ion-label></h6></ion-col>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-input (ionChange)="downloadDirectoryEvent($event)" type="text" value="" placeholder="Enter the Download Directory"></ion-input>
+                  </ion-item>
+                  
+                </ion-col>
+              </ion-row>
+            </ion-grid></ion-item>
+          </ion-card> 
+  
+            <ion-button color="custom" *ngIf="!isUrlSet" (click)="onDownload()"  expand="block" size="large" shape="round">
+              DOWNLOAD
+            </ion-button>
+            <ion-button color="custom" *ngIf="isUrlSet" (click)="btn.click()"  expand="block" size="large" shape="round">
+              DOWNLOAD
+            </ion-button>
+  
+            <a #btn hidden id="download"   style="border:1px solid black;"  download>DOWNLOAD</a>                                    
+  
+          </ion-col>        
+        </ion-row>     
+      </ion-grid>   
+     
+  </ion-content>
+  
+  <ion-footer id="footer" class="footer text-muted">
+    Copyright © 2010-2019 ForgeRock AS. All rights reserved.
+  </ion-footer>
+  </body>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

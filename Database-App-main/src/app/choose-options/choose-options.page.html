@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="custom"  class="ion-text-center">
+    <ion-text  class="ion-text-center" >
+      <h1><ion-icon name="server-sharp"></ion-icon> Welcome to our Server <ion-icon name="server-sharp"></ion-icon> </h1>
+    </ion-text>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" color="#f7f7f7" >
+  <br><br>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col sizeLg="6" offsetLg="3">
+        
+        <ion-button color="custom" shape="round" expand="block" (click)="onUpload()">  
+          <h4><b>UPLOAD</b></h4>
+        </ion-button>
+        <br>
+        <ion-button color="custom" shape="round" expand="block" (click)="onDownload()">         
+          <h4><b>DOWNLOAD</b></h4>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>
+
+  <footer id="footer" class="footer text-muted">
+    Copyright © 2010-2019 ForgeRock AS. All rights reserved.
+  </footer>
